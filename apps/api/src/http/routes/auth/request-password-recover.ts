@@ -12,7 +12,7 @@ export async function requestPasswordRecover(app: FastifyInstance) {
         tags: ['Auth'],
         summary: 'Get authenticated user profile',
         body: z.object({
-          email: z.string().email(),
+          email: z.email(),
         }),
         response: {
           201: z.null(),
