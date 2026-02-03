@@ -13,7 +13,7 @@ export async function updateProject(app: FastifyInstance) {
   app
     .withTypeProvider<ZodTypeProvider>()
     .register(auth)
-    .delete(
+    .put(
       '/organizations/:slug/projects/:projectId',
       {
         schema: {
@@ -26,7 +26,7 @@ export async function updateProject(app: FastifyInstance) {
           }),
           params: z.object({
             slug: z.string(),
-            projectId: z.string().uuid(),
+            projectId: z.uuid(),
           }),
           response: {
             204: z.null(),
