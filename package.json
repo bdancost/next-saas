@@ -2,15 +2,15 @@
   "name": "next-saas-rbac",
   "private": true,
   "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev",
-    "lint": "turbo run lint",
+    "build": "turbo build",
+    "start:dev": "turbo dev",
+    "lint": "turbo lint",
     "check-types": "turbo run check-types"
   },
   "devDependencies": {
     "@types/node": "^25.1.0",
     "prettier": "^3.7.4",
-    "turbo": "^2.7.6",
+    "turbo": "^2.8.3",
     "typescript": "5.9.2"
   },
   "engines": {
