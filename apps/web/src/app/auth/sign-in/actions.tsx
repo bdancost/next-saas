@@ -5,13 +5,11 @@ import { HTTPError } from 'ky'
 import { z } from 'zod'
 
 const signInSchema = z.object({
-  email: z
-    .string()
-    .email({ message: 'Please, provide a valid e-mail address.' }),
+  email: z.email({ message: 'Please, provide a valid e-mail address.' }),
   password: z.string().min(1, { message: 'Please, provide your password.' }),
 })
 
-export async function signInWithEmailAndPassword(_: unknown, data: FormData) {
+export async function signInWithEmailAndPassword(data: FormData) {
   const result = signInSchema.safeParse(Object.fromEntries(data))
 
   if (!result.success) {
