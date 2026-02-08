@@ -14,15 +14,16 @@ import { Separator } from '@/components/ui/separator'
 import { signInWithEmailAndPassword } from './actions'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { useFormState } from '@/hooks/use-form-state'
+import { useRouter } from 'next/navigation'
 
 export function SignInForm() {
-  // const [{ errors, message, success }, formAction, isPending] = useActionState(
-  //   signInWithEmailAndPassword,
-  //   { success: false, message: null, errors: null },
-  // )
+  const router = useRouter()
 
   const [{ errors, message, success }, handleSubmit, isPending] = useFormState(
-    signInWithEmailAndPassword
+    signInWithEmailAndPassword,
+    () => {
+      router.push('/')
+    }
   )
 
   return (
