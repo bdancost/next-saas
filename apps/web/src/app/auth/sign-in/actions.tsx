@@ -6,8 +6,12 @@ import { cookies } from 'next/headers'
 import { z } from 'zod'
 
 const signInSchema = z.object({
-  email: z.email({ message: 'Please, provide a valid e-mail address.' }),
-  password: z.string().min(1, { message: 'Please, provide your password.' }),
+  email: z.email({
+    message: 'Please, provide a valid e-mail address.',
+  }),
+  password: z.string().min(1, {
+    message: 'Please, provide your password.',
+  }),
 })
 
 export async function signInWithEmailAndPassword(data: FormData) {
@@ -15,7 +19,6 @@ export async function signInWithEmailAndPassword(data: FormData) {
 
   if (!result.success) {
     const errors = result.error.flatten().fieldErrors
-
     return { success: false, message: null, errors }
   }
 
@@ -31,12 +34,14 @@ export async function signInWithEmailAndPassword(data: FormData) {
 
     cookieStore.set('token', token, {
       path: '/',
-      maxAge: 60 * 60 * 24 * 7, // 7 days
+      maxAge: 60 * 60 * 24 * 7, // 7 dias
+      httpOnly: true,
+      sameSite: 'lax',
+      secure: process.env.NODE_ENV === 'production',
     })
   } catch (err) {
     if (err instanceof HTTPError) {
       const { message } = await err.response.json()
-
       return { success: false, message, errors: null }
     }
 
