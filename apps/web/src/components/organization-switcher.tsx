@@ -13,10 +13,10 @@ import {
   DropdownMenuTrigger,
 } from './ui/dropdown-menu'
 import { getOrganizations } from '@/http/get-organizations'
+import { getCurrentOrg } from '@/app/auth/auth'
 
 export async function OrganizationSwitcher() {
-  const cookieStore = await cookies()
-  const currentOrg = cookieStore.get('org')?.value
+  const currentOrg = getCurrentOrg()
 
   const { organizations } = await getOrganizations()
   const currentOrganization = organizations.find(
