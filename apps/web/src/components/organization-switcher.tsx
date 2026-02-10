@@ -16,9 +16,10 @@ import { getOrganizations } from '@/http/get-organizations'
 import { getCurrentOrg } from '@/app/auth/auth'
 
 export async function OrganizationSwitcher() {
-  const currentOrg = getCurrentOrg()
+  const currentOrg = await getCurrentOrg()
 
   const { organizations } = await getOrganizations()
+
   const currentOrganization = organizations.find(
     (org) => org.slug === currentOrg
   )
