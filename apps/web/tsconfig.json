@@ -1,6 +1,8 @@
 {
   "extends": "@saas/ts-config/nextjs.json",
   "compilerOptions": {
+    "types": ["node"],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
