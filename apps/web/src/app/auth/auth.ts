@@ -2,20 +2,19 @@ import { defineAbilityFor } from '@saas/auth'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 
-import { getProfile } from '@/http/get-profile'
 import { getMembership } from '@/http/get-membership'
+import { getProfile } from '@/http/get-profile'
 
-export async function isAuthenticated() {
-  return !!(await cookies()).get('token')?.value
+export function isAuthenticated() {
+  return !!cookies().get('token')?.value
 }
 
-export async function getCurrentOrg() {
-  const cookieStore = await cookies()
-  return cookieStore.get('org')?.value ?? null
+export function getCurrentOrg() {
+  return cookies().get('org')?.value ?? null
 }
 
 export async function getCurrentMembership() {
-  const org = await getCurrentOrg()
+  const org = getCurrentOrg()
 
   if (!org) {
     return null
@@ -42,8 +41,7 @@ export async function ability() {
 }
 
 export async function auth() {
-  const cookiesStore = await cookies()
-  const token = cookiesStore.get('token')?.value
+  const token = cookies().get('token')?.value
 
   if (!token) {
     redirect('/auth/sign-in')
@@ -53,7 +51,7 @@ export async function auth() {
     const { user } = await getProfile()
 
     return { user }
-  } catch {
-    redirect('/api/auth/sign-out')
-  }
+  } catch {}
+
+  redirect('/api/auth/sign-out')
 }

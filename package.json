@@ -21,5 +21,8 @@
     "apps/*",
     "packages/*",
     "config/*"
-  ]
+  ],
+  "dependencies": {
+    "@tanstack/react-query": "^5.51.4"
+  }
 }

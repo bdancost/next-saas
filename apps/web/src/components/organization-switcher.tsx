@@ -1,6 +1,8 @@
 import { ChevronsUpDown, PlusCircle } from 'lucide-react'
-import { cookies } from 'next/headers'
 import Link from 'next/link'
+
+import { getCurrentOrg } from '@/app/auth/auth'
+import { getOrganizations } from '@/http/get-organizations'
 
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 import {
@@ -12,23 +14,22 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from './ui/dropdown-menu'
-import { getOrganizations } from '@/http/get-organizations'
-import { getCurrentOrg } from '@/app/auth/auth'
 
 export async function OrganizationSwitcher() {
-  const currentOrg = await getCurrentOrg()
+  const currentOrg = getCurrentOrg()
 
   const { organizations } = await getOrganizations()
 
   const currentOrganization = organizations.find(
     (org) => org.slug === currentOrg
   )
+
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="focus-visible:ring-primary flex w-42 items-center gap-2 rounded p-1 text-sm font-medium outline-none focus-visible:ring-2">
+      <DropdownMenuTrigger className="flex w-[168px] items-center gap-2 rounded p-1 text-sm font-medium outline-none focus-visible:ring-2 focus-visible:ring-primary">
         {currentOrganization ? (
           <>
-            <Avatar className="mr-2 size-4">
+            <Avatar className="size-4">
               {currentOrganization.avatarUrl && (
                 <AvatarImage src={currentOrganization.avatarUrl} />
               )}
@@ -41,13 +42,13 @@ export async function OrganizationSwitcher() {
         ) : (
           <span className="text-muted-foreground">Select organization</span>
         )}
-        <ChevronsUpDown className="text-muted-foreground ml-auto size-4" />
+        <ChevronsUpDown className="ml-auto size-4 text-muted-foreground" />
       </DropdownMenuTrigger>
       <DropdownMenuContent
         align="end"
         alignOffset={-16}
         sideOffset={12}
-        className="w-50"
+        className="w-[200px]"
       >
         <DropdownMenuGroup>
           <DropdownMenuLabel>Organizations</DropdownMenuLabel>

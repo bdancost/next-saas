@@ -6,7 +6,7 @@ import { cookies } from 'next/headers'
 import { z } from 'zod'
 
 const signInSchema = z.object({
-  email: z.email({
+  email: z.string().email({
     message: 'Please, provide a valid e-mail address.',
   }),
   password: z.string().min(1, {

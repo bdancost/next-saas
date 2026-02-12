@@ -5,4 +5,3 @@ ignoredBuiltDependencies:
 packages:
   - 'apps/*'
   - 'packages/*'
-  - 'config/*'
