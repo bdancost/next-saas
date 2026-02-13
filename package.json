@@ -4,8 +4,7 @@
   "scripts": {
     "build": "turbo build",
     "start:dev": "turbo dev",
-    "lint": "turbo lint",
-    "check-types": "turbo run check-types"
+    "lint": "turbo lint"
   },
   "devDependencies": {
     "@types/node": "^25.1.0",
@@ -21,8 +20,5 @@
     "apps/*",
     "packages/*",
     "config/*"
-  ],
-  "dependencies": {
-    "@tanstack/react-query": "^5.51.4"
-  }
+  ]
 }

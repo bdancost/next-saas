@@ -33,7 +33,7 @@ importers:
       '@saas/prettier':
         specifier: workspace:*
         version: link:../../config/prettier
-      '@saas/ts-config':
+      '@saas/tsconfig':
         specifier: workspace:*
         version: link:../../config/typescript-config
       '@tailwindcss/postcss':

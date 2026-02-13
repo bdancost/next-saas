@@ -7,10 +7,6 @@ settings:
 importers:
 
   .:
-    dependencies:
-      '@tanstack/react-query':
-        specifier: ^5.51.4
-        version: 5.90.21(react@18.3.1)
     devDependencies:
       '@types/node':
         specifier: ^25.1.0
@@ -72,13 +68,13 @@ importers:
         version: 10.3.0
       '@saas/eslint-config':
         specifier: workspace:*
-        version: link:../../packages/eslint-config
+        version: link:../../config/eslint-config
       '@saas/prettier':
         specifier: workspace:*
-        version: link:../../packages/prettier
-      '@saas/ts-config':
+        version: link:../../config/prettier
+      '@saas/tsconfig':
         specifier: workspace:*
-        version: link:../../packages/typescript-config
+        version: link:../../config/typescript-config
       '@types/bcryptjs':
         specifier: ^3.0.0
         version: 3.0.0
@@ -172,13 +168,13 @@ importers:
     devDependencies:
       '@saas/eslint-config':
         specifier: workspace:*
-        version: link:../../packages/eslint-config
+        version: link:../../config/eslint-config
       '@saas/prettier':
         specifier: workspace:*
-        version: link:../../packages/prettier
-      '@saas/ts-config':
+        version: link:../../config/prettier
+      '@saas/tsconfig':
         specifier: workspace:*
-        version: link:../../packages/typescript-config
+        version: link:../../config/typescript-config
       '@tailwindcss/postcss':
         specifier: ^4.1.18
         version: 4.1.18
@@ -207,6 +203,32 @@ importers:
         specifier: ^5
         version: 5.9.2
 
+  config/eslint-config:
+    devDependencies:
+      '@rocketseat/eslint-config':
+        specifier: ^2.2.2
+        version: 2.2.2(@types/eslint@9.6.1)(eslint@8.57.1)(typescript@5.9.2)
+      '@saas/prettier':
+        specifier: workspace:*
+        version: link:../prettier
+      '@types/eslint':
+        specifier: ^9.6.1
+        version: 9.6.1
+      eslint-plugin-simple-import-sort:
+        specifier: ^12.1.1
+        version: 12.1.1(eslint@8.57.1)
+
+  config/prettier:
+    devDependencies:
+      prettier:
+        specifier: ^3.8.1
+        version: 3.8.1
+      prettier-plugin-tailwindcss:
+        specifier: ^0.7.2
+        version: 0.7.2(prettier@3.8.1)
+
+  config/typescript-config: {}
+
   packages/auth:
     dependencies:
       '@casl/ability':
@@ -218,13 +240,13 @@ importers:
     devDependencies:
       '@saas/eslint-config':
         specifier: workspace:*
-        version: link:../eslint-config
+        version: link:../../config/eslint-config
       '@saas/prettier':
         specifier: workspace:*
-        version: link:../prettier
-      '@saas/ts-config':
+        version: link:../../config/prettier
+      '@saas/tsconfig':
         specifier: workspace:*
-        version: link:../typescript-config
+        version: link:../../config/typescript-config
       '@types/node':
         specifier: ^20.12.6
         version: 20.19.33
@@ -243,45 +265,19 @@ importers:
     devDependencies:
       '@saas/eslint-config':
         specifier: workspace:*
-        version: link:../eslint-config
+        version: link:../../config/eslint-config
       '@saas/prettier':
         specifier: workspace:*
-        version: link:../prettier
-      '@saas/ts-config':
+        version: link:../../config/prettier
+      '@saas/tsconfig':
         specifier: workspace:*
-        version: link:../typescript-config
+        version: link:../../config/typescript-config
       '@types/node':
         specifier: ^20.19.30
         version: 20.19.33
       tsx:
         specifier: ^4.7.2
         version: 4.21.0
-
-  packages/eslint-config:
-    devDependencies:
-      '@rocketseat/eslint-config':
-        specifier: ^2.2.2
-        version: 2.2.2(@types/eslint@9.6.1)(eslint@8.57.1)(typescript@5.9.2)
-      '@saas/prettier':
-        specifier: workspace:*
-        version: link:../prettier
-      '@types/eslint':
-        specifier: ^9.6.1
-        version: 9.6.1
-      eslint-plugin-simple-import-sort:
-        specifier: ^12.1.1
-        version: 12.1.1(eslint@8.57.1)
-
-  packages/prettier:
-    devDependencies:
-      prettier:
-        specifier: ^3.8.1
-        version: 3.8.1
-      prettier-plugin-tailwindcss:
-        specifier: ^0.7.2
-        version: 0.7.2(prettier@3.8.1)
-
-  packages/typescript-config: {}
 
 packages:
 

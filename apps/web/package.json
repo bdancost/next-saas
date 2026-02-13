@@ -38,7 +38,7 @@
   "devDependencies": {
     "@saas/eslint-config": "workspace:*",
     "@saas/prettier": "workspace:*",
-    "@saas/ts-config": "workspace:*",
+    "@saas/tsconfig": "workspace:*",
     "@tailwindcss/postcss": "^4.1.18",
     "@types/node": "^20",
     "@types/react": "^18",

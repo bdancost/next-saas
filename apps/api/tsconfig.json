@@ -1,9 +1,7 @@
 {
-  "extends": "@saas/ts-config/node.json",
+  "extends": "@saas/tsconfig/node.json",
   "include": ["src/**/*", "@types/*.d.ts"],
   "compilerOptions": {
-    "types": ["node"],
-    "lib": ["dom", "dom.iterable", "esnext"],
     "ignoreDeprecations": "6.0",
     "baseUrl": ".",
     "paths": {

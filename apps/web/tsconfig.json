@@ -1,5 +1,5 @@
 {
-  "extends": "@saas/ts-config/nextjs.json",
+  "extends": "@saas/tsconfig/nextjs.json",
   "compilerOptions": {
     "ignoreDeprecations": "6.0",
     "baseUrl": ".",

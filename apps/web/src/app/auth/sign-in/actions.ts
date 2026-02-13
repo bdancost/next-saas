@@ -1,9 +1,9 @@
 'use server'
 
-import { signInWithPassword } from '@/http/sign-in-with-password'
 import { HTTPError } from 'ky'
 import { cookies } from 'next/headers'
 import { z } from 'zod'
+import { signInWithPassword } from '@/http/sign-in-with-password'
 
 const signInSchema = z.object({
   email: z.string().email({
@@ -35,9 +35,6 @@ export async function signInWithEmailAndPassword(data: FormData) {
     cookieStore.set('token', token, {
       path: '/',
       maxAge: 60 * 60 * 24 * 7, // 7 dias
-      httpOnly: true,
-      sameSite: 'lax',
-      secure: process.env.NODE_ENV === 'production',
     })
   } catch (err) {
     if (err instanceof HTTPError) {
