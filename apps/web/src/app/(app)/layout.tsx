@@ -1,15 +1,12 @@
 import { redirect } from 'next/navigation'
 
-import { isAuthenticated } from '../auth/auth'
-import { Header } from '@/components/header'
+import { isAuthenticated } from '@/auth/auth'
 
 export default function AppLayout({
   children,
-  teste,
   sheet,
 }: Readonly<{
   children: React.ReactNode
-  teste: React.ReactNode
   sheet: React.ReactNode
 }>) {
   if (!isAuthenticated()) {
@@ -17,13 +14,9 @@ export default function AppLayout({
   }
 
   return (
-    <div className="space-y-4 py-4">
-      <Header />
-      <main className="mx-auto w-full max-w-[1200px]">
-        {children}
-        {teste}
-        {sheet}
-      </main>
-    </div>
+    <>
+      {children}
+      {sheet}
+    </>
   )
 }
