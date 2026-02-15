@@ -5,8 +5,10 @@ import { Separator } from '@/components/ui/separator' //
 import { ThemeSwitcher } from './theme/theme-switcher'
 import { Slash } from 'lucide-react'
 import { OrganizationSwitcher } from './organization-switcher'
+import { ability } from '@/auth/auth'
 
-export function Header() {
+export async function Header() {
+  const permissions = await ability()
   return (
     <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="mx-auto flex h-16 max-w-[1200px] items-center justify-between px-6">
@@ -21,7 +23,9 @@ export function Header() {
 
           <OrganizationSwitcher />
 
-          <div className="flex items-center gap-3">
+          {permissions?.can('get', 'Project') && <p>Project</p>}
+
+          <div className="flex items-center gap-4">
             <span className="text-lg font-semibold text-muted-foreground/50">
               /
             </span>
