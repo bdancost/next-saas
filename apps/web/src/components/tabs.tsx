@@ -1,4 +1,4 @@
-import { ability, getCurrentOrg } from '../app/auth/auth'
+import { ability, getCurrentOrg } from '../auth/auth'
 
 import { NavLink } from './nav-link'
 import { Button } from './ui/button'
