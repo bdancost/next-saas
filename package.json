@@ -4,7 +4,8 @@
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
-    "lint": "turbo lint"
+    "lint": "turbo lint",
+    "clean": "rm -rf node_modules .turbo apps/*/node_modules apps/*/.next"
   },
   "devDependencies": {
     "@types/node": "^25.1.0",
