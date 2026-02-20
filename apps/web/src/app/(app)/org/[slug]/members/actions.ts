@@ -16,18 +16,26 @@ const inviteSchema = z.object({
   role: roleSchema,
 })
 
+type InviteFieldErrors = z.inferFlattenedErrors<
+  typeof inviteSchema
+>['fieldErrors']
+
 export async function createInviteAction(data: FormData) {
   const currentOrg = getCurrentOrg()!
   const result = inviteSchema.safeParse(Object.fromEntries(data))
 
   if (!result.success) {
-    const fieldErrors = result.error.flatten().fieldErrors
+    const fieldErrors: InviteFieldErrors = result.error.flatten().fieldErrors
 
     const errors: Record<string, string[]> = {}
 
-    for (const key in fieldErrors) {
-      if (fieldErrors[key]) {
-        errors[key] = fieldErrors[key] as string[]
+    for (const key of Object.keys(fieldErrors) as Array<
+      keyof InviteFieldErrors
+    >) {
+      const value = fieldErrors[key]
+
+      if (value) {
+        errors[key] = value
       }
     }
 
@@ -72,31 +80,33 @@ export async function createInviteAction(data: FormData) {
 }
 
 export async function removeMemberAction(memberId: string) {
-  const currentOrg = getCurrentOrg()
+  const currentOrg = getCurrentOrg()!
 
   await removeMember({
-    org: currentOrg!,
+    org: currentOrg,
     memberId,
   })
 
   revalidateTag(`${currentOrg}/members`)
 }
+
 export async function updateMemberAction(memberId: string, role: Role) {
-  const currentOrg = getCurrentOrg()
+  const currentOrg = getCurrentOrg()!
 
   await updateMember({
-    org: currentOrg!,
+    org: currentOrg,
     memberId,
     role,
   })
 
   revalidateTag(`${currentOrg}/members`)
 }
+
 export async function revokeInviteAction(inviteId: string) {
-  const currentOrg = getCurrentOrg()
+  const currentOrg = getCurrentOrg()!
 
   await revokeInvite({
-    org: currentOrg!,
+    org: currentOrg,
     inviteId,
   })
 
