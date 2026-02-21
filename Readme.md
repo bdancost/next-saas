@@ -1,83 +1,41 @@
 # Next.js SaaS + RBAC
 
-This project contains all the necessary boilerplate to setup a multi-tenant SaaS with Next.js including authentication and RBAC authorization.
+![Stack](https://img.shields.io/badge/Next.js-v13-000000?style=for-the-badge&logo=next.js&logoColor=white) ![Node.js](https://img.shields.io/badge/Node.js-18-339933?style=for-the-badge&logo=node.js&logoColor=white) ![Fastify](https://img.shields.io/badge/Fastify-Server-0098FF?style=for-the-badge&logo=fastify&logoColor=white) ![Prisma](https://img.shields.io/badge/Prisma-ORM-2D3748?style=for-the-badge&logo=prisma&logoColor=white) ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-DB-336791?style=for-the-badge&logo=postgresql&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-TS-3178C6?style=for-the-badge&logo=typescript&logoColor=white) ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-Design-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white) ![Turborepo](https://img.shields.io/badge/Turborepo-Monorepo-000000?style=for-the-badge&logo=turbo&logoColor=white) ![pnpm](https://img.shields.io/badge/pnpm-Manager-F69220?style=for-the-badge&logo=pnpm&logoColor=white) ![Vercel](https://img.shields.io/badge/Vercel-Deploy-000000?style=for-the-badge&logo=vercel&logoColor=white)
 
-## Features
+Descrição
 
-### Authentication
+- Projeto full-stack que demonstra um template SaaS multi-tenant com autenticação (JWT) e RBAC.
+- Frontend: Next.js (app router). Backend: Fastify + Prisma + PostgreSQL.
+- Monorepo gerenciado com Turborepo e pnpm.
 
-- [ ] It should be able to authenticate using e-mail & password;
-- [ ] It should be able to authenticate using Github account;
-- [ ] It should be able to recover password using e-mail;
-- [x] It should be able to create an account (e-mail, name and password);
+Como rodar localmente
 
-### Organizations
+1. Instalar dependências:
+   - pnpm i
+2. Rodar API e Web em terminais separados:
+   - cd apps/api && pnpm dev
+   - cd apps/web && pnpm dev
 
-- [ ] It should be able to create a new organization;
-- [ ] It should be able to get organizations to which the user belongs;
-- [ ] It should be able to update an organization;
-- [ ] It should be able to shutdown an organization;
-- [ ] It should be able to transfer organization ownership;
+Arquivos e localização chave
 
-### Invites
+- apps/web — Frontend Next.js (app router)
+- apps/api — Backend Fastify + Prisma
+- packages/auth — Regras de autorização e criação de Ability (RBAC)
+- apps/api/prisma/seed.ts — Seed inicial do banco
+- apps/api/src/http/middlewares/auth.ts — Middleware JWT
+- apps/web/src/app/(app)/page.tsx — Página inicial do app
 
-- [ ] It should be able to invite a new member (e-mail, role);
-- [ ] It should be able to accept an invite;
-- [ ] It should be able to revoke a pending invite;
+Contribuição
 
-### Members
+- Abra issues e PRs.
+- Siga eslint/prettier nas configs em config/.
 
-- [ ] It should be able to get organization members;
-- [ ] It should be able to update a member role;
+Observações sobre os badges
 
-### Projects
+- Os badges usam o estilo "for-the-badge" do shields.io para um visual profissional e consistente.
+- Se quiser uma animação real (GIF/SVG animado) no topo, posso gerar instruções ou um exemplo de SVG animado para você incorporar ao README.
 
-- [ ] It should be able to get projects within a organization;
-- [ ] It should be able to create a new project (name, url, description);
-- [ ] It should be able to update a project (name, url, description);
-- [ ] It should be able to delete a project;
+Licença
 
-### Billing
-
-- [ ] It should be able to get billing details for organization ($20 per project / $10 per member excluding billing role);
-
-## RBAC
-
-Roles & permissions.
-
-### Roles
-
-- Owner (count as administrator)
-- Administrator
-- Member
-- Billing (one per organization)
-- Anonymous
-
-### Permissions table
-
-|                        | Administrator | Member | Billing | Anonymous |
-| ---------------------- | ------------- | ------ | ------- | --------- |
-| Update organization    | ✅            | ❌     | ❌      | ❌        |
-| Delete organization    | ✅            | ❌     | ❌      | ❌        |
-| Invite a member        | ✅            | ❌     | ❌      | ❌        |
-| Revoke an invite       | ✅            | ❌     | ❌      | ❌        |
-| List members           | ✅            | ✅     | ✅      | ❌        |
-| Transfer ownership     | ⚠️            | ❌     | ❌      | ❌        |
-| Update member role     | ✅            | ❌     | ❌      | ❌        |
-| Delete member          | ✅            | ⚠️     | ❌      | ❌        |
-| List projects          | ✅            | ✅     | ✅      | ❌        |
-| Create a new project   | ✅            | ✅     | ❌      | ❌        |
-| Update a project       | ✅            | ⚠️     | ❌      | ❌        |
-| Delete a project       | ✅            | ⚠️     | ❌      | ❌        |
-| Get billing details    | ✅            | ❌     | ✅      | ❌        |
-| Export billing details | ✅            | ❌     | ✅      | ❌        |
-
-> ✅ = allowed
-> ❌ = not allowed
-> ⚠️ = allowed w/ conditions
-
-#### Conditions
-
-- Only owners may transfer organization ownership;
-- Only administrators and project authors may update/delete the project;
-- Members can leave their own organization;
+- Projeto de exemplo — verifique o repositório
