@@ -7,7 +7,7 @@
     },
     "build": {
       "dependsOn": ["^build"],
-      "outputs": [".next/**", "dist/**"],
+      "outputs": [".next/**", "!.next/cache/**"],
       "env": [
         "DATABASE_URL",
         "JWT_SECRET",
@@ -17,7 +17,9 @@
         "NEXT_PUBLIC_API_URL"
       ]
     },
-    "lint": {},
+    "lint": {
+      "dependsOn": ["^lint"]
+    },
     "check-types": {}
   }
 }
